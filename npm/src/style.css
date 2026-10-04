@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500&display=swap');
+
+:root {
+  color: #f7f1e8;
+  background: #05070b;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% 45%, #15100f 0%, #080a0f 32%, #030407 72%),
+    #030407;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.interface {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.key-panel {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  width: 218px;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 2px;
+  background: linear-gradient(145deg, rgb(13 15 20 / 80%), rgb(8 10 14 / 58%));
+  box-shadow:
+    0 20px 70px rgb(0 0 0 / 28%),
+    inset 0 1px 0 rgb(255 255 255 / 5%);
+  backdrop-filter: blur(20px) saturate(120%);
+}
+
+.key-panel::before {
+  position: absolute;
+  top: 0;
+  left: 18px;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, #ff8b38, #ffd0a7);
+  box-shadow: 0 0 12px #ff6a1f;
+  content: '';
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: #ff9a55;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.key-panel h1 {
+  margin: 0 0 16px;
+  font-size: 17px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+}
+
+.key-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.key-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  min-height: 21px;
+}
+
+.key-row dt,
+.key-row dd {
+  margin: 0;
+}
+
+.key-row dt {
+  display: flex;
+  gap: 4px;
+}
+
+kbd {
+  display: inline-grid;
+  min-width: 19px;
+  height: 19px;
+  place-items: center;
+  padding: 0 5px;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 3px;
+  background: rgb(255 255 255 / 5%);
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 40%);
+  color: #fff8ef;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+}
+
+.key-row dd {
+  color: rgb(235 230 222 / 58%);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.status {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+  display: flex;
+  gap: 18px;
+  color: rgb(255 255 255 / 40%);
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.status span::before {
+  color: #ff7a2b;
+  content: '•';
+  margin-right: 7px;
+  text-shadow: 0 0 8px #ff5d17;
+}
+
+.effect-label {
+  position: absolute;
+  bottom: 21px;
+  right: 22px;
+  margin: 0;
+  color: rgb(255 255 255 / 32%);
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 180ms ease, text-shadow 180ms ease;
+}
+
+.effect-label.active {
+  color: #ffc18e;
+  text-shadow: 0 0 14px #ff671f;
+}
+
+.touch-actions {
+  position: absolute;
+  right: 18px;
+  bottom: 50px;
+  display: none;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.touch-actions button {
+  padding: 9px 12px;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 2px;
+  background: rgb(13 15 20 / 68%);
+  color: rgb(255 255 255 / 70%);
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .touch-actions {
+    display: flex;
+  }
+}
+
+@media (max-width: 620px) {
+  .key-panel {
+    top: 12px;
+    left: 12px;
+    width: 185px;
+    padding: 14px;
+  }
+
+  .key-panel h1 {
+    margin-bottom: 11px;
+    font-size: 14px;
+  }
+
+  .key-list {
+    gap: 5px;
+  }
+
+  .key-row {
+    grid-template-columns: 54px 1fr;
+  }
+
+  .status {
+    bottom: 14px;
+    left: 12px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .effect-label {
+    display: none;
+  }
+}
+
+.render-error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: min(420px, calc(100% - 48px));
+  margin: 0;
+  transform: translate(-50%, -50%);
+  color: rgb(255 236 220 / 78%);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .effect-label {
+    transition: none;
+  }
+}

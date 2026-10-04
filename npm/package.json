@@ -1,0 +1,27 @@
+{
+  "name": "particles-browser",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/build.mjs --watch",
+    "build": "tsc -b && node scripts/build.mjs",
+    "test": "tsx --test src/*.test.ts src/particles/*.test.ts",
+    "typecheck": "tsc -b --pretty false",
+    "lint": "biome lint ."
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
+    "@types/node": "^24.6.0",
+    "@types/three": "^0.180.0",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9.2"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

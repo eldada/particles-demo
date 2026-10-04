@@ -1,3 +1,10 @@
-/target/
+# Rust
+rust/target/
 **/*.rs.bk
+
+# npm
+npm/node_modules/
+npm/dist/
+npm/**/*.tsbuildinfo
+
 .DS_Store
